@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Organization List";
+}
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Organization>
+
+<h2 class="alert-info text-center text-danger">Organization List</h2>
+<a class="btn btn-primary btn-sm" asp-controller="Organization" asp-action="Create">Create Organization</a>
+<hr />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Org Name</th>
+            <th scope="col">Org Email</th>
+            <th scope="col">Org GST No</th>
+            <th scope="col">Org Address</th>
+            <th scope="col">Org Published Date</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var org in Model.Select((entry, index) => new { entry, index }))
+        {
+            <tr>
+                <td>@(org.index + 1)</td>
+                <td>@org.entry.OrganizationName</td>
+                <td>@org.entry.OrganizationEmail</td>
+                <td>@org.entry.OrganizationGSTNo</td>
+                <td>@org.entry.OrganizationAddress</td>
+                <td>@org.entry.OrganizationPublishedAt.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a class="btn btn-warning btn-sm mx-2" asp-controller="Organization" asp-action="Edit" asp-route-id="@org.entry.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Organization" asp-action="Delete" asp-route-id="@org.entry.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

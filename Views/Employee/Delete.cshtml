@@ -23,8 +23,11 @@
         <dt class="col-sm-2">Employee Position</dt>
         <dd class="col-sm-10">@Model.EmployeePosition</dd>
 
-        <dt class="col-sm-2">Employee Deoartment</dt>
+        <dt class="col-sm-2">Employee Department</dt>
         <dd class="col-sm-10">@Model.Department?.DepartmentName</dd>
+
+        <dt class="col-sm-2">Employee Organization</dt>
+        <dd class="col-sm-10">@Model.Organization?.OrganizationName</dd>
     </dl>
 
     <form asp-action="Delete" method="post">

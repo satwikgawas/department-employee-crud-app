@@ -26,5 +26,11 @@ namespace EmployeeDepartmentCRUDApp.Models
         [Display(Name = "Employee Department")]
         public int DepartmentId { get; set; }
         public Department? Department { get; set; }
+
+        [ForeignKey("Organization")]
+        [Required(ErrorMessage = "Please select organization")]
+        [Display(Name = "Employee Organization")]
+        public int OrganizationId { get; set; }
+        public Organization? Organization { get; set; }
     }
 }

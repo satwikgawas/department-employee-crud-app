@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Delete Organization";
+}
+@model EmployeeDepartmentCRUDApp.Models.Organization
+<h2 class="alert-info text-center text-danger">Delete Organization</h2>
+
+<div>
+    <h4>Are you sure you want to delete these organization?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Organization Name</dt>
+        <dd class="col-sm-10">@Model.OrganizationName</dd>
+
+        <dt class="col-sm-2">Organization Email</dt>
+        <dd class="col-sm-10">@Model.OrganizationEmail</dd>
+
+        <dt class="col-sm-2">Organization GST No</dt>
+        <dd class="col-sm-10">@Model.OrganizationGSTNo</dd>
+
+        <dt class="col-sm-2">Organization Address</dt>
+        <dd class="col-sm-10">@Model.OrganizationAddress</dd>
+
+        <dt class="col-sm-2">Organization Published Date</dt>
+        <dd class="col-sm-10">@Model.OrganizationPublishedAt.ToString("dd/MM/yyyy")</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-controller="Organization" asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

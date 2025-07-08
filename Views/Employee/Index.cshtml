@@ -12,28 +12,30 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">Sr. No.</th>
             <th scope="col">Employee Name</th>
             <th scope="col">Employee Email</th>
             <th scope="col">Employee Phone</th>
             <th scope="col">Employee Position</th>
             <th scope="col">Department</th>
+            <th scope="col">Organization</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var emp in Model)
+        @foreach(var emp in Model.Select((entry, index) => new { entry, index}))
         {
             <tr>
-                <td>@emp.Id</td>
-                <td>@emp.EmployeeName</td>
-                <td>@emp.EmployeeEmail</td>
-                <td>@emp.EmployeePhone</td>
-                <td>@emp.EmployeePosition</td>
-                <td>@emp.Department?.DepartmentName</td>
+                <td>@(emp.index+1)</td>
+                <td>@emp.entry.EmployeeName</td>
+                <td>@emp.entry.EmployeeEmail</td>
+                <td>@emp.entry.EmployeePhone</td>
+                <td>@emp.entry.EmployeePosition</td>
+                <td>@emp.entry.Department?.DepartmentName</td>
+                <td>@emp.entry.Organization?.OrganizationName</td>
                 <td>
-                    <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.Id" class="btn btn-danger btn-sm">Delete</a>
+                    <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.entry.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.entry.Id" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         }

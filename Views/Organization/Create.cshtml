@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Create Organization";
+}
+
+@model EmployeeDepartmentCRUDApp.Models.Organization
+
+<h2 class="alert-info text-center text-danger">Create Organization</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="OrganizationName" class="form-label"></label>
+        <input type="text" asp-for="OrganizationName" class="form-control" />
+        <span asp-validation-for="OrganizationName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrganizationEmail" class="form-label"></label>
+        <input type="email" asp-for="OrganizationEmail" class="form-control" />
+        <span asp-validation-for="OrganizationEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrganizationGSTNo" class="form-label"></label>
+        <input type="text" asp-for="OrganizationGSTNo" class="form-control" />
+        <span asp-validation-for="OrganizationGSTNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrganizationAddress" class="form-label"></label>
+        <input type="text" asp-for="OrganizationAddress" class="form-control" />
+        <span asp-validation-for="OrganizationAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrganizationPublishedAt" class="form-label"></label>
+        <input type="date" asp-for="OrganizationPublishedAt" class="form-control" />
+        <span asp-validation-for="OrganizationPublishedAt" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success btn-sm">Save</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -16,13 +16,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.Include(d=> d.Department).ToListAsync());
+            return View(await _context.Employees.Include(d=> d.Department).Include(o=> o.Organization).ToListAsync());
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName");
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName");
             return View();
         }
 
@@ -37,18 +38,20 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
             return View(employee);
         }
 
         [HttpGet]
         public async Task<IActionResult>Edit(int id)
         {
-            var employee = await _context.Employees.Include(d=> d.Department).FirstOrDefaultAsync(e=> e.Id==id);
+            var employee = await _context.Employees.Include(d=> d.Department).Include(o=> o.Organization).FirstOrDefaultAsync(e=> e.Id==id);
             if (employee == null)
             {
                 return NotFound();
             }
             ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
             return View(employee);
         }
 
@@ -63,13 +66,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
             return View(employee);
         }
 
         [HttpGet]
         public async Task<IActionResult>Delete(int id)
         {
-            var employee = await _context.Employees.Include(d=> d.Department).FirstOrDefaultAsync(e=> e.Id == id);
+            var employee = await _context.Employees.Include(d=> d.Department).Include(o=> o.Organization).FirstOrDefaultAsync(e=> e.Id == id);
             if(employee == null)
             {
                 return NotFound();
@@ -81,7 +85,7 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult>DeleteConfirmed(int id)
         {
-            var employee = await _context.Employees.Include(d=> d.Department).FirstOrDefaultAsync(e=> e.Id==id);
+            var employee = await _context.Employees.Include(d=> d.Department).Include(o=> o.Organization).FirstOrDefaultAsync(e=> e.Id==id);
             if (employee == null)
             {
                 return NotFound();
