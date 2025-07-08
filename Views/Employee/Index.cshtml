@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Employee List";
+}
+
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Employee>
+
+<h2 class="alert-info text-center text-danger">Employee List</h2>
+
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create Employee</a>
+<hr/>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Employee Email</th>
+            <th scope="col">Employee Phone</th>
+            <th scope="col">Employee Position</th>
+            <th scope="col">Department</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.EmployeeName</td>
+                <td>@emp.EmployeeEmail</td>
+                <td>@emp.EmployeePhone</td>
+                <td>@emp.EmployeePosition</td>
+                <td>@emp.Department?.DepartmentName</td>
+                <td>
+                    <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

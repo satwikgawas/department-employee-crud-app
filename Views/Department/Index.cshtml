@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Department List";
+}
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Department>
+
+<h2 class="alert-info text-center text-danger">Department List</h2>
+<a class="btn btn-primary btn-sm" asp-controller="Department" asp-action="Create">Create Department</a>
+<hr/>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Department Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var dept in Model)
+        {
+            <tr>
+                <td>@dept.Id</td>
+                <td>@dept.DepartmentName</td>
+                <td>
+                    <a class="btn btn-warning btn-sm mx-2" asp-controller="Department" asp-action="Edit" asp-route-id="@dept.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Department" asp-action="Delete" asp-route-id="@dept.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

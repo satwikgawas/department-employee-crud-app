@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Edit Department";
+}
+
+@model EmployeeDepartmentCRUDApp.Models.Department
+
+<h2 class="alert-info text-center text-danger">Edit Department</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="DepartmentName" class="form-label"></label>
+        <input type="text" asp-for="DepartmentName" class="form-control" />
+        <span asp-validation-for="DepartmentName" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success btn-sm">Update</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

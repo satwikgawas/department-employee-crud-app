@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Delete Employee";
+}
+@model EmployeeDepartmentCRUDApp.Models.Employee
+<h2 class="alert-info text-center text-danger">Delete Employee</h2>
+
+<div>
+    <h4>Are you sure you want to delete these employee?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Employee Name</dt>
+        <dd class="col-sm-10">@Model.EmployeeName</dd>
+
+        <dt class="col-sm-2">Employee Email</dt>
+        <dd class="col-sm-10">@Model.EmployeeEmail</dd>
+
+        <dt class="col-sm-2">Employee Phone</dt>
+        <dd class="col-sm-10">@Model.EmployeePhone</dd>
+
+        <dt class="col-sm-2">Employee Position</dt>
+        <dd class="col-sm-10">@Model.EmployeePosition</dd>
+
+        <dt class="col-sm-2">Employee Deoartment</dt>
+        <dd class="col-sm-10">@Model.Department?.DepartmentName</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
