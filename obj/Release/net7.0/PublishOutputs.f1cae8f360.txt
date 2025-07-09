@@ -1,4 +1,6 @@
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\employee_db.db
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\EmployeeDepartmentCRUDApp.exe
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\web.config
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\appsettings.json
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\PubTmp\Out\EmployeeDepartmentCRUDApp.dll

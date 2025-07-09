@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Payroll List";
+}
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Payroll>
+
+<h2 class="alert-info text-center text-danger">Payroll List</h2>
+<a class="btn btn-primary btn-sm" asp-controller="Payroll" asp-action="Create">Create Payroll</a>
+<hr />
+
+    <table class="table table-bordered table-striped tablw-width">
+        <thead>
+            <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Basic Salary</th>
+                <th scope="col">HRA</th>
+                <th scope="col">DA</th>
+                <th scope="col">Deductions</th>
+                <th scope="col">NetPlay</th>
+                <th scope="col">PayDate</th>
+                <th scope="col">PayMonth</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payroll in Model.Select((entry, index) => new { entry, index }))
+            {
+                <tr>
+                    <td>@(payroll.index + 1)</td>
+                    <td>@payroll.entry.Employee?.EmployeeName</td>
+                    <td>@payroll.entry.BasicSalary</td>
+                    <td>@payroll.entry.HRA</td>
+                    <td>@payroll.entry.DA</td>
+                    <td>@payroll.entry.Deductions</td>
+                    <td>@payroll.entry.NetPlay</td>
+                    <td>@payroll.entry.PayDate.ToString("dd/MM/yyyy")</td>
+                    <td>@payroll.entry.PayMonth</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm mx-2" asp-controller="Payroll" asp-action="Edit" asp-route-id="@payroll.entry.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-controller="Payroll" asp-action="Delete" asp-route-id="@payroll.entry.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

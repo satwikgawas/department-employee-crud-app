@@ -12,5 +12,8 @@ namespace EmployeeDepartmentCRUDApp.Models
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Payroll> Payrolls { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
     }
 }

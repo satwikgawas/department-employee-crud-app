@@ -17,6 +17,34 @@ namespace EmployeeDepartmentCRUDApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Attendance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CheckInTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CheckOutTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Attendances");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -74,6 +102,38 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Leave", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LeaveType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Leaves");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Organization", b =>
                 {
                     b.Property<int>("Id")
@@ -104,6 +164,55 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.ToTable("Organizations");
                 });
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Payroll", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("BasicSalary")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("DA")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Deductions")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("HRA")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("NetPlay")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("PayDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PayMonth")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Payrolls");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Attendance", b =>
+                {
+                    b.HasOne("EmployeeDepartmentCRUDApp.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Department", b =>
                 {
                     b.HasOne("EmployeeDepartmentCRUDApp.Models.Organization", "Organization")
@@ -132,6 +241,28 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.Navigation("Department");
 
                     b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Leave", b =>
+                {
+                    b.HasOne("EmployeeDepartmentCRUDApp.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Payroll", b =>
+                {
+                    b.HasOne("EmployeeDepartmentCRUDApp.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Department", b =>

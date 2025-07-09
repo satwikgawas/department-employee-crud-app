@@ -29,13 +29,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Department department)
         {
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", department.OrganizationId);
             if (ModelState.IsValid)
             {
+                department.Organization = await _context.Organizations.FindAsync(department.OrganizationId);
                 _context.Departments.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", department.OrganizationId);
             return View(department);
         }
 
@@ -55,13 +56,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Department department)
         {
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", department.OrganizationId);
             if (ModelState.IsValid)
             {
+                department.Organization = await _context.Organizations.FindAsync(department.OrganizationId);
                 _context.Departments.Update(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", department.OrganizationId);
             return View(department);
 
         }

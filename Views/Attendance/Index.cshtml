@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Organization List";
+}
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Attendance>
+
+<h2 class="alert-info text-center text-danger">Attendance List</h2>
+<a class="btn btn-primary btn-sm" asp-controller="Attendance" asp-action="Create">Create Attendance</a>
+<hr />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Emp Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Check In Time</th>
+            <th scope="col">Check Out Time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var attend in Model.Select((entry, index) => new { entry, index }))
+        {
+            <tr>
+                <td>@(attend.index + 1)</td>
+                <td>@attend.entry.Employee?.EmployeeName</td>
+                <td>@attend.entry.Date.ToString("dd/MM/yyyy")</td>
+                <td>@attend.entry.CheckInTime.ToString("HH:mm tt")</td>
+                <td>@attend.entry.CheckOutTime.ToString("HH:mm tt")</td>
+                <td>@attend.entry.Status</td>
+                <td>
+                    <a class="btn btn-warning btn-sm mx-2" asp-controller="Attendance" asp-action="Edit" asp-route-id="@attend.entry.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Attendance" asp-action="Delete" asp-route-id="@attend.entry.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

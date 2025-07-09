@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<EnvironmentName>Production</EnvironmentName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,18 @@
 
   <ItemGroup>
     <EditorConfigFiles Remove="D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="employee_db.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

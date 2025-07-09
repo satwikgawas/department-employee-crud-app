@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Leave List";
+}
+@model IEnumerable<EmployeeDepartmentCRUDApp.Models.Leave>
+
+<h2 class="alert-info text-center text-danger">Leave List</h2>
+<a class="btn btn-primary btn-sm" asp-controller="Leave" asp-action="Create">Create Leave</a>
+<hr />
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Leave Type</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in Model.Select((entry, index) => new { entry, index }))
+        {
+            <tr>
+                <td>@(leave.index + 1)</td>
+                <td>@leave.entry.Employee?.EmployeeName</td>
+                <td>@leave.entry.StartDate.ToString("dd/MM/yyyy")</td>
+                <td>@leave.entry.EndDate.ToString("dd/MM/yyyy")</td>
+                <td>@leave.entry.LeaveType</td>
+                <td>@leave.entry.Reason</td>
+                <td>@leave.entry.Status</td>
+                <td>
+                    <a class="btn btn-warning btn-sm mx-2" asp-controller="Leave" asp-action="Edit" asp-route-id="@leave.entry.Id">Edit</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Leave" asp-action="Delete" asp-route-id="@leave.entry.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

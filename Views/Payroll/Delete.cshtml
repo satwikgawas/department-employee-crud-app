@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Delete Payroll";
+}
+@model EmployeeDepartmentCRUDApp.Models.Payroll
+<h2 class="alert-info text-center text-danger">Delete Payroll</h2>
+
+<div>
+    <h4>Are you sure you want to delete these payroll?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Emp Name</dt>
+        <dd class="col-sm-10">@Model.Employee?.EmployeeName</dd>
+
+        <dt class="col-sm-2">Emp Basic Salary</dt>
+        <dd class="col-sm-10">@Model.BasicSalary</dd>
+
+        <dt class="col-sm-2">Emp HRA</dt>
+        <dd class="col-sm-10">@Model.HRA</dd>
+
+        <dt class="col-sm-2">Emp DA</dt>
+        <dd class="col-sm-10">@Model.DA</dd>
+
+        <dt class="col-sm-2">Emp Deductions</dt>
+        <dd class="col-sm-10">@Model.Deductions</dd>
+
+        <dt class="col-sm-2">Emp Net Play</dt>
+        <dd class="col-sm-10">@Model.NetPlay</dd>
+
+        <dt class="col-sm-2">Emp Salary Pay Date</dt>
+        <dd class="col-sm-10">@Model.PayDate.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-2">Emp Salary Pay Month</dt>
+        <dd class="col-sm-10">@Model.PayMonth</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-controller="Payroll" asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

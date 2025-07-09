@@ -65,3 +65,5 @@ D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\refint\E
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\EmployeeDepartmentCRUDApp.pdb
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\EmployeeDepartmentCRUDApp.genruntimeconfig.cache
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\ref\EmployeeDepartmentCRUDApp.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\web.config
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\employee_db.db

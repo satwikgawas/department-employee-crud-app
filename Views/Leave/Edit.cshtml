@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Edit Leave";
+}
+
+@model EmployeeDepartmentCRUDApp.Models.Leave
+
+<h2 class="alert-info text-center text-danger">Edit Leave</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="EmployeeId" class="form-label"></label>
+        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-select">
+            <option value="">Select Employee</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate" class="form-label"></label>
+        <input type="date" asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="form-label"></label>
+        <input type="date" asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LeaveType" class="form-label"></label>
+        <select asp-for="LeaveType" asp-items="ViewBag.LeaveTypes" class="form-select">
+            <option value="">Select Leave Type</option>
+        </select>
+        <span asp-validation-for="LeaveType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Reason" class="form-label"></label>
+        <input type="text" asp-for="Reason" class="form-control" />
+        <span asp-validation-for="Reason" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" asp-items="ViewBag.Status" class="form-select">
+            <option value="">Select Status</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success btn-sm">Save</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

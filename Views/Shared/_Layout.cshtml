@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EmployeeDepartmentCRUDApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 <body>
     <body class="d-flex flex-column min-vh-100">
@@ -17,21 +19,57 @@
                 <!-- Sidebar -->
                 <nav class="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar collapse">
                     <div class="position-sticky pt-3">
-                        <h5 class="px-3 py-2">Employee CRUD</h5>
+                        <h5 class="px-3 py-2">Karma Solutions</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">
+                                    <i class="bi bi-building me-2"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Organization" asp-action="Index">
+                                    <i class="bi bi-building me-2"></i>
                                     Organization
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Department" asp-action="Index">
+                                    <i class="bi bi-diagram-3 me-2"></i>
                                     Department
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Employee" asp-action="Index">
+                                    <i class="bi bi-people me-2"></i>
                                     Employee
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="hrDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-person-workspace me-2"></i>
+                                    HR
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="hrDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Attendance" asp-action="Index">Attendance</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Leave" asp-action="Index">Leave</a>
+                                    </li>
+                                   @* <li>
+                                        <a class="dropdown-item" asp-controller="Performance" asp-action="Index">Performance</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Training" asp-action="Index">Training</a>
+                                    </li>*@
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Payroll" asp-action="Index">
+                                    <i class="bi bi-receipt me-2"></i>
+                                    Payroll
                                 </a>
                             </li>
                            
