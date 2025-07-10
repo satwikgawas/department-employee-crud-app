@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeDepartmentCRUDApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250709122851_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250710115729_InitailMigration")]
+    partial class InitailMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,6 +205,61 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.ToTable("Payrolls");
                 });
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Attendance", b =>
                 {
                     b.HasOne("EmployeeDepartmentCRUDApp.Models.Employee", "Employee")
@@ -268,6 +323,25 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.UserRole", b =>
+                {
+                    b.HasOne("EmployeeDepartmentCRUDApp.Models.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EmployeeDepartmentCRUDApp.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Department", b =>
                 {
                     b.Navigation("Employees");
@@ -276,6 +350,16 @@ namespace EmployeeDepartmentCRUDApp.Migrations
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Organization", b =>
                 {
                     b.Navigation("Departments");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

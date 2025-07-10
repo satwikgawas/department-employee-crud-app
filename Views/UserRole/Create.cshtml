@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Create UserRole";
+}
+
+@model EmployeeDepartmentCRUDApp.Models.UserRole
+
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Create UserRole</h2>
+        </div>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Create" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label asp-for="UserId" class="form-label"></label>
+                <select asp-for="UserId" asp-items="ViewBag.Users" class="form-select">
+                    <option value="">Select User</option>
+                </select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="RoleId" class="form-label"></label>
+                <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-select">
+                    <option value="">Select Role</option>
+                </select>
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -4,25 +4,36 @@
 
 @model EmployeeDepartmentCRUDApp.Models.Department
 
-<h2 class="alert-info text-center text-danger">Edit Department</h2>
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Edit Department</h2>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="DepartmentName" class="form-label"></label>
-        <input type="text" asp-for="DepartmentName" class="form-control" />
-        <span asp-validation-for="DepartmentName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="OrganizationId" class="form-label"></label>
-        <select asp-for="OrganizationId" asp-items="ViewBag.Organizations" class="form-select">
-            <option value="">Select Organization</option>
-        </select>
-        <span asp-validation-for="OrganizationId" class="text-danger"></span>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-success btn-sm">Update</button>
-</form>
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="DepartmentName" class="form-label"></label>
+            <input type="text" asp-for="DepartmentName" class="form-control" />
+            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="OrganizationId" class="form-label"></label>
+            <select asp-for="OrganizationId" asp-items="ViewBag.Organizations" class="form-select">
+                <option value="">Select Organization</option>
+            </select>
+            <span asp-validation-for="OrganizationId" class="text-danger"></span>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-success btn-sm">Update</button>
+    </form>
+</div>
+</div>
 
 @section Scripts {
     @{

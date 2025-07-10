@@ -3,46 +3,56 @@
 }
 @model EmployeeDepartmentCRUDApp.Models.Employee
 
-<h2 class="alert-info text-center text-danger">Create Employee</h2>
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Create Employee</h2>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="EmployeeName" class="form-label"></label>
-        <input type="text" asp-for="EmployeeName" class="form-control" />
-        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Create" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label asp-for="EmployeeName" class="form-label"></label>
+                <input type="text" asp-for="EmployeeName" class="form-control" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EmployeeEmail" class="form-label"></label>
+                <input type="email" asp-for="EmployeeEmail" class="form-control" />
+                <span asp-validation-for="EmployeeEmail" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EmployeePhone" class="form-label"></label>
+                <input type="number" asp-for="EmployeePhone" class="form-control" />
+                <span asp-validation-for="EmployeePhone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="EmployeePosition" class="form-label"></label>
+                <input type="text" asp-for="EmployeePosition" class="form-control" />
+                <span asp-validation-for="EmployeePosition" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DepartmentId" class="form-label"></label>
+                <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-select">
+                    <option value="">Select Department</option>
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OrganizationId" class="form-label"></label>
+                <select asp-for="OrganizationId" asp-items="ViewBag.Organizations" class="form-select">
+                    <option value="">Select Organization</option>
+                </select>
+                <span asp-validation-for="OrganizationId" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
     </div>
-     <div class="form-group">
-        <label asp-for="EmployeeEmail" class="form-label"></label>
-        <input type="email" asp-for="EmployeeEmail" class="form-control" />
-        <span asp-validation-for="EmployeeEmail" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="EmployeePhone" class="form-label"></label>
-        <input type="number" asp-for="EmployeePhone" class="form-control" />
-        <span asp-validation-for="EmployeePhone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="EmployeePosition" class="form-label"></label>
-        <input type="text" asp-for="EmployeePosition" class="form-control" />
-        <span asp-validation-for="EmployeePosition" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DepartmentId" class="form-label"></label>
-        <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-select">
-            <option value="">Select Department</option>
-        </select>
-        <span asp-validation-for="DepartmentId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="OrganizationId" class="form-label"></label>
-        <select asp-for="OrganizationId" asp-items="ViewBag.Organizations" class="form-select">
-            <option value="">Select Organization</option>
-        </select>
-        <span asp-validation-for="OrganizationId" class="text-danger"></span>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
-</form>
+</div>
 
 @section Scripts {
     @{

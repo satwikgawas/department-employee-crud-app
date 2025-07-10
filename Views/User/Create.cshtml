@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Create User";
+}
+
+@model EmployeeDepartmentCRUDApp.Models.User
+
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Create User</h2>
+        </div>
+    </div>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Create" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label"></label>
+                <input type="text" asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <div class="input-group">
+                    <input type="password" asp-for="Password" class="form-control" id="passwordInput" />
+                    <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
+               
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $('#togglePassword').on('click', function () {
+                const $passwordInput = $('#passwordInput');
+                const $icon = $(this).find('i');
+                const isPassword = $passwordInput.attr('type') === 'password';
+
+                $passwordInput.attr('type', isPassword ? 'text' : 'password');
+                $icon.toggleClass('bi-eye bi-eye-slash');
+            });
+        });
+    </script>
+}

@@ -3,23 +3,45 @@
 }
 
 @model IEnumerable<EmployeeDepartmentCRUDApp.Models.Employee>
+@{
+    var userRole = (Context.Session.GetString("UserRole") ?? "").ToLower();
+}
 
-<h2 class="alert-info text-center text-danger">Employee List</h2>
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Employee List</h2>
+        </div>
+        @if (userRole == "admin" || userRole == "hr")
+        {
+            <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                <a class="btn btn-primary btn-sm me-2" asp-controller="Employee" asp-action="Create" title="Create Employee">
+                    <i class="bi bi-plus-circle"></i> Create Employee
+                </a>
+                <a class="btn btn-info btn-sm" asp-controller="Employee" asp-action="Export" title="Export Employee">
+                    <i class="bi bi-download"></i> Export
+                </a>
+            </div>
+        }
+    </div>
+    <hr />
+</div>
 
-<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create Employee</a>
-<hr/>
-
+<div class="table-responsive">
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th scope="col">Sr. No.</th>
-            <th scope="col">Employee Name</th>
-            <th scope="col">Employee Email</th>
-            <th scope="col">Employee Phone</th>
-            <th scope="col">Employee Position</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Position</th>
             <th scope="col">Department</th>
             <th scope="col">Organization</th>
-            <th scope="col">Actions</th>
+            @if (userRole == "admin" || userRole == "hr")
+            {
+               <th scope="col">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -33,11 +55,15 @@
                 <td>@emp.entry.EmployeePosition</td>
                 <td>@emp.entry.Department?.DepartmentName</td>
                 <td>@emp.entry.Organization?.OrganizationName</td>
-                <td>
-                    <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.entry.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.entry.Id" class="btn btn-danger btn-sm">Delete</a>
-                </td>
+                @if (userRole == "admin" || userRole == "hr")
+                {
+                    <td>
+                         <a asp-controller="Employee" asp-action="Edit" asp-route-id="@emp.entry.Id" class="btn btn-warning btn-sm" title="Edit Employee">Edit</a>
+                         <a asp-controller="Employee" asp-action="Delete" asp-route-id="@emp.entry.Id" class="btn btn-danger btn-sm" title="Delete Employee">Delete</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>
 </table>
+</div>

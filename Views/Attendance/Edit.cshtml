@@ -4,42 +4,52 @@
 
 @model EmployeeDepartmentCRUDApp.Models.Attendance
 
-<h2 class="alert-info text-center text-danger">Edit Attendance</h2>
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Edit Attendance</h2>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="EmployeeId" class="form-label"></label>
-        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-select">
-            <option value="">Select Employee</option>
-        </select>
-        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="EmployeeId" class="form-label"></label>
+                <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-select">
+                    <option value="">Select Employee</option>
+                </select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Date" class="form-label"></label>
+                <input type="date" asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CheckInTime" class="form-label"></label>
+                <input type="time" asp-for="CheckInTime" class="form-control" />
+                <span asp-validation-for="CheckInTime" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CheckOutTime" class="form-label"></label>
+                <input type="time" asp-for="CheckOutTime" class="form-control" />
+                <span asp-validation-for="CheckOutTime" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status" asp-items="ViewBag.Status" class="form-select">
+                    <option value="">Select Status</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="Date" class="form-label"></label>
-        <input type="date" asp-for="Date" class="form-control" />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="CheckInTime" class="form-label"></label>
-        <input type="time" asp-for="CheckInTime" class="form-control" />
-        <span asp-validation-for="CheckInTime" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="CheckOutTime" class="form-label"></label>
-        <input type="time" asp-for="CheckOutTime" class="form-control" />
-        <span asp-validation-for="CheckOutTime" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Status" class="form-label"></label>
-        <select asp-for="Status" asp-items="ViewBag.Status" class="form-select">
-            <option value="">Select Status</option>
-        </select>
-        <span asp-validation-for="Status" class="text-danger"></span>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
-</form>
+</div>
 
 @section Scripts {
     @{

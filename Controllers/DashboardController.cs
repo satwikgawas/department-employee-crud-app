@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace EmployeeDepartmentCRUDApp.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : BaseController
     {
         private readonly ILogger<DashboardController> _logger;
 

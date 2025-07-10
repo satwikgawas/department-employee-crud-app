@@ -67,3 +67,13 @@ D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\Employee
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\obj\Release\net7.0\ref\EmployeeDepartmentCRUDApp.dll
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\web.config
 D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\employee_db.db
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\EPPlus.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\EPPlus.Interfaces.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\EPPlus.System.Drawing.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\System.Drawing.Common.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+D:\satwik\asp.net core mvc\EmployeeDepartmentCRUDApp\bin\Release\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

@@ -1,58 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "Create Payroll";
+    ViewData["Title"] = "Edit Payroll";
 }
 
 @model EmployeeDepartmentCRUDApp.Models.Payroll
 
-<h2 class="alert-info text-center text-danger">Edit Payroll</h2>
+<div class="container-fluid">
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6">
+            <h2 class="text-danger">Edit Payroll</h2>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id"/>
-    <div class="form-group">
-        <label asp-for="EmployeeId" class="form-label"></label>
-        <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-select">
-            <option value="">Select Employee</option>
-        </select>
-        <span asp-validation-for="EmployeeId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="BasicSalary" class="form-label"></label>
-        <input type="number" id="BasicSalary" asp-for="BasicSalary" class="form-control" />
-        <span asp-validation-for="BasicSalary" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="HRA" class="form-label"></label>
-        <input type="number" id="HRA" asp-for="HRA" class="form-control" />
-        <span asp-validation-for="HRA" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DA" class="form-label"></label>
-        <input type="number" id="DA" asp-for="DA" class="form-control" />
-        <span asp-validation-for="DA" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Deductions" class="form-label"></label>
-        <input type="number" id="Deductions" asp-for="Deductions" class="form-control" />
-        <span asp-validation-for="Deductions" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="NetPlay" class="form-label"></label>
-        <input readonly type="number" id="NetPlay" asp-for="NetPlay" class="form-control" />
-        <span asp-validation-for="NetPlay" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PayDate" class="form-label"></label>
-        <input type="date" asp-for="PayDate" class="form-control" />
-        <span asp-validation-for="PayDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PayMonth" class="form-label"></label>
-        <input type="text" asp-for="PayMonth" class="form-control" />
-        <span asp-validation-for="PayMonth" class="text-danger"></span>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-success btn-sm">Save</button>
-</form>
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+        <input type="hidden" asp-for="Id"/>
+        <div class="mb-3">
+            <label asp-for="EmployeeId" class="form-label"></label>
+            <select asp-for="EmployeeId" asp-items="ViewBag.Employees" class="form-select">
+                <option value="">Select Employee</option>
+            </select>
+            <span asp-validation-for="EmployeeId" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="BasicSalary" class="form-label"></label>
+            <input type="number" id="BasicSalary" asp-for="BasicSalary" class="form-control" />
+            <span asp-validation-for="BasicSalary" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="HRA" class="form-label"></label>
+            <input type="number" id="HRA" asp-for="HRA" class="form-control" />
+            <span asp-validation-for="HRA" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="DA" class="form-label"></label>
+            <input type="number" id="DA" asp-for="DA" class="form-control" />
+            <span asp-validation-for="DA" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="Deductions" class="form-label"></label>
+            <input type="number" id="Deductions" asp-for="Deductions" class="form-control" />
+            <span asp-validation-for="Deductions" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="NetPlay" class="form-label"></label>
+            <input readonly type="number" id="NetPlay" asp-for="NetPlay" class="form-control" />
+            <span asp-validation-for="NetPlay" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+            <label asp-for="PayDate" class="form-label"></label>
+            <input type="date" asp-for="PayDate" class="form-control" />
+            <span asp-validation-for="PayDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PayMonth" class="form-label"></label>
+            <input type="text" asp-for="PayMonth" class="form-control" />
+            <span asp-validation-for="PayMonth" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+    </form>
+</div>
+</div>
 
 @section Scripts {
     @{
