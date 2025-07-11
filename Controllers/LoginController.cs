@@ -16,35 +16,54 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-              return View();
+            ViewData["HideLayout"] = true;
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Login login)
+        public async Task<IActionResult> Index(Login login)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await _context.Users
-                                  .Include(u => u.UserRoles)
-                                  .SingleOrDefaultAsync(u => u.Username == login.Username);
-
-                if (user != null)
-                {
-                    var passwordHasher = new PasswordHasher<User>();
-                    var result = passwordHasher.VerifyHashedPassword(user, user.Password, login.Password);
-                    if (result == PasswordVerificationResult.Success)
-                    {
-                        var userRole = user.UserRoles.FirstOrDefault()?.Role?.Name ?? "User";
-                        HttpContext.Session.SetString("Username", user.Username);
-                        HttpContext.Session.SetString("UserRole", userRole);
-                        return RedirectToAction("Index", "Dashboard");
-                    }
-                }
                 ViewBag.ErrorMessage = "Invalid Username or Password";
+                ViewData["HideLayout"] = true;
+                return View(login);
             }
-            return View(login);
+
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == login.Username);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = "Invalid Username or Password";
+                ViewData["HideLayout"] = true;
+                return View(login);
+            }
+
+            var hasher = new PasswordHasher<User>();
+            var result = hasher.VerifyHashedPassword(user, user.Password, login.Password);
+
+            if (result != PasswordVerificationResult.Success)
+            {
+                ViewBag.ErrorMessage = "Invalid Username or Password";
+                ViewData["HideLayout"] = true;
+                return View(login);
+            }
+
+            // Set session
+            HttpContext.Session.SetString("Username", user.Username);
+            var roleName = await _context.UserRoles
+                              .Where(ur => ur.UserId == user.Id)
+                              .Include(ur => ur.Role)
+                              .Select(ur => ur.Role.Name)
+                              .FirstOrDefaultAsync();
+
+            if (!string.IsNullOrEmpty(roleName))
+                HttpContext.Session.SetString("UserRole", roleName);
+
+            return RedirectToAction("Index", "Dashboard");
         }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

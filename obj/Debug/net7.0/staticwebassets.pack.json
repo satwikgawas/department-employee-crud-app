@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\images\\login_background.jpg",
+      "PackagePath": "staticwebassets\\images\\login_background.jpg"
+    },
+    {
+      "Id": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
       "Id": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

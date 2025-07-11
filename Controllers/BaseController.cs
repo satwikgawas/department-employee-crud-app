@@ -7,23 +7,22 @@ namespace EmployeeDepartmentCRUDApp.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            //var controllerName = context.RouteData.Values["controller"]?.ToString();
-            //var actionName = context.RouteData.Values["action"]?.ToString();
+            var controllerName = context.RouteData.Values["controller"]?.ToString();
 
-            //var username = context.HttpContext.Session.GetString("Username");
+            var username = context.HttpContext.Session.GetString("Username");
 
-            //// Skip session check for LoginController
-            //if (controllerName != null && controllerName.Equals("Login", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    base.OnActionExecuting(context);
-            //    return;
-            //}
+            // Skip session check for LoginController
+            if (controllerName != null && controllerName.Equals("Login", StringComparison.OrdinalIgnoreCase))
+            {
+                base.OnActionExecuting(context);
+                return;
+            }
 
-            //if (string.IsNullOrEmpty(username))
-            //{
-            //    context.Result = new RedirectToActionResult("Login", "Login", null);
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(username))
+            {
+                context.Result = new RedirectToActionResult("Index", "Login", null);
+                return;
+            }
 
             base.OnActionExecuting(context);
         }

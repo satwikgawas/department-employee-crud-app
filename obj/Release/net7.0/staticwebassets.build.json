@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+k0rR8VOTvhb8CDg+hwN6rwuyymFv5EIJcHpph3v/ag=",
+  "Hash": "rn27YXWaUzl4cvBorrtIgfCCt/5foXoO9MIu7nB14fU=",
   "Source": "EmployeeDepartmentCRUDApp",
   "BasePath": "_content/EmployeeDepartmentCRUDApp",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\images\\login_background.jpg",
+      "SourceId": "EmployeeDepartmentCRUDApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\",
+      "BasePath": "_content/EmployeeDepartmentCRUDApp",
+      "RelativePath": "images/login_background.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\login_background.jpg"
+    },
+    {
+      "Identity": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\images\\logo.png",
+      "SourceId": "EmployeeDepartmentCRUDApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\",
+      "BasePath": "_content/EmployeeDepartmentCRUDApp",
+      "RelativePath": "images/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
       "Identity": "D:\\satwik\\asp.net core mvc\\EmployeeDepartmentCRUDApp\\wwwroot\\js\\site.js",

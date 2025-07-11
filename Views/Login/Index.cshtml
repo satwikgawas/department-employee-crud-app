@@ -3,7 +3,13 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
+<!-- Background image div -->
+<div class="position-fixed top-0 start-0 w-100 h-100"
+     style="background: url('/images/login_background.jpg') center center / cover no-repeat;">
+</div>
+
+<!-- Login form container with relative positioning and high z-index -->
+<div class="container d-flex justify-content-center align-items-center min-vh-100 position-relative" style="z-index: 1;">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <div class="card-body">
             <h3 class="card-title text-center mb-4">Login</h3>
@@ -15,7 +21,7 @@
                 </div>
             }
 
-            <form asp-action="Login" method="post" novalidate>
+            <form asp-action="Index" method="post" novalidate>
                 <div class="form-group mb-3">
                     <label asp-for="Username" class="form-label"></label>
                     <input asp-for="Username" class="form-control" />
