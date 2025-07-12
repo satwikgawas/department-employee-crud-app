@@ -134,6 +134,56 @@ namespace EmployeeDepartmentCRUDApp.Migrations
                     b.ToTable("Leaves");
                 });
 
+            modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.ModuleAssign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsAttendance")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsConfiguration")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDepartment")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsEmployee")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsHR")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsLeave")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsOrganization")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsPayroll")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsRole")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsUser")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsUserManagement")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsUserRole")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ModuleAssigns");
+                });
+
             modelBuilder.Entity("EmployeeDepartmentCRUDApp.Models.Organization", b =>
                 {
                     b.Property<int>("Id")

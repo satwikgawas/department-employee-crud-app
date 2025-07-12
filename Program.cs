@@ -75,6 +75,12 @@ static async Task SeedAdminUser(ApplicationDbContext context)
             RoleId = adminRole.Id
         });
 
+        var assignModuleUser = new ModuleAssign
+        {
+            RoleName = "admin",
+        };
+        await context.ModuleAssigns.AddAsync(assignModuleUser);
+
         await context.SaveChangesAsync();
     }
 }

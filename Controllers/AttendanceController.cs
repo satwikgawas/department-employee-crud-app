@@ -39,7 +39,13 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Attendance attendance)
-        {
+        {  
+            if (ModelState.IsValid)
+            {
+                _context.Attendances.Add(attendance);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", attendance.EmployeeId);
             ViewBag.Status = Enum.GetValues(typeof(Status))
                           .Cast<Status>()
@@ -48,13 +54,6 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                               Value = ((int)e).ToString(),
                               Text = e.ToString()
                           }).ToList();
-            if (ModelState.IsValid)
-            {
-                attendance.Employee = await _context.Employees.FindAsync(attendance.EmployeeId);
-                _context.Attendances.Add(attendance);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             return View(attendance);
         }
 
@@ -81,6 +80,12 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Attendance attendance)
         {
+            if (ModelState.IsValid)
+            {
+                _context.Attendances.Update(attendance);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", attendance.EmployeeId);
             ViewBag.Status = Enum.GetValues(typeof(Status))
                      .Cast<Status>()
@@ -89,13 +94,6 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                          Value = ((int)e).ToString(),
                          Text = e.ToString()
                      }).ToList();
-            if (ModelState.IsValid)
-            {
-                attendance.Employee = await _context.Employees.FindAsync(attendance.EmployeeId);
-                _context.Attendances.Update(attendance);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             return View(attendance);
         }
 

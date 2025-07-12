@@ -47,6 +47,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Leave leave)
         {
+            
+            if (ModelState.IsValid)
+            {
+                leave.Employee = await _context.Employees.FindAsync(leave.EmployeeId);
+                _context.Leaves.Add(leave);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", leave.EmployeeId);
             ViewBag.LeaveTypes = Enum.GetValues(typeof(LeaveType))
                             .Cast<LeaveType>()
@@ -62,13 +70,6 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                          Value = ((int)e).ToString(),
                          Text = e.ToString()
                      }).ToList();
-            if (ModelState.IsValid)
-            {
-                leave.Employee = await _context.Employees.FindAsync(leave.EmployeeId);
-                _context.Leaves.Add(leave);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             return View(leave);
         }
 
@@ -102,6 +103,13 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Leave leave)
         {
+            if (ModelState.IsValid)
+            {
+                leave.Employee = await _context.Employees.FindAsync(leave.EmployeeId);
+                _context.Leaves.Update(leave);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", leave.EmployeeId);
             ViewBag.LeaveTypes = Enum.GetValues(typeof(LeaveType))
                              .Cast<LeaveType>()
@@ -117,13 +125,6 @@ namespace EmployeeDepartmentCRUDApp.Controllers
                          Value = ((int)e).ToString(),
                          Text = e.ToString()
                      }).ToList();
-            if (ModelState.IsValid)
-            {
-                leave.Employee = await _context.Employees.FindAsync(leave.EmployeeId);
-                _context.Leaves.Update(leave);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             return View(leave);
         }
 

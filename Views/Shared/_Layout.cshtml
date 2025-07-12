@@ -1,8 +1,18 @@
-﻿@{
+﻿@using EmployeeDepartmentCRUDApp.Models
+@inject EmployeeDepartmentCRUDApp.Models.ApplicationDbContext DbContext
+
+@{
     var userRole = Context.Session.GetString("UserRole") ?? "";
     var username = Context.Session.GetString("Username") ?? "";
     var hideLayout = ViewData["HideLayout"] as bool? ?? false;
+    ModuleAssign permissions = null;
+
+    if (!string.IsNullOrEmpty(userRole))
+    {
+        permissions = DbContext.ModuleAssigns.FirstOrDefault(m => m.RoleName == userRole);
+    }
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +68,7 @@
                     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark text-white sidebar collapse">
                         <div class="position-sticky pt-3">
                             <ul class="nav flex-column">
-                            @if (userRole == "admin")
+                            @if (permissions.RoleName == "admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">
@@ -67,42 +77,74 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Organization" asp-action="Index">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="ModuleAssign" asp-action="Index">
                                         <i class="bi bi-building me-2"></i>
-                                        Organization
+                                        Assign Modules
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Department" asp-action="Index">
-                                        <i class="bi bi-diagram-3 me-2"></i>
-                                        Department
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Employee" asp-action="Index">
-                                        <i class="bi bi-people me-2"></i>
-                                        Employee
-                                    </a>
+                                @if(permissions.IsOrganization)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Organization" asp-action="Index">
+                                            <i class="bi bi-building me-2"></i>
+                                            Organization
+                                        </a>
+                                    </li>
+                                }
+                                <li class="nav-item dropdown">
+                                    @if (permissions.IsConfiguration)
+                                    {
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="masterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-gear-fill me-2"></i>
+                                            Configuration
+                                        </a>
+                                    }
+                                    <ul class="dropdown-menu" aria-labelledby="hrDropdown">
+                                        @if (permissions.IsDepartment)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Department" asp-action="Index">Department</a>
+                                            </li>
+                                        }
+                                        @if (permissions.IsEmployee)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Employee" asp-action="Index">Employee</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" id="hrDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-people me-2"></i>
-                                        User
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="hrDropdown">
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="User" asp-action="Index">User</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Role" asp-action="Index">Role</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="UserRole" asp-action="Index">User Role</a>
-                                        </li>
+                                    @if (permissions.IsUserManagement)
+                                    {
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-people me-2"></i>
+                                            User Management
+                                        </a>
+                                    }
+                                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                        @if (permissions.IsUser)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="User" asp-action="Index">User</a>
+                                            </li>
+                                        }
+                                        @if (permissions.IsRole)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Role" asp-action="Index">Role</a>
+                                            </li>
+                                        }
+                                        @if (permissions.IsUserRole)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="UserRole" asp-action="Index">User Role</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
                             }
-                            @if(userRole == "hr")
+                            @if(permissions.RoleName == "hr")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">
@@ -110,52 +152,85 @@
                                         Dashboard
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Employee" asp-action="Index">
-                                        <i class="bi bi-people me-2"></i>
-                                        Employee
-                                    </a>
+                                <li class="nav-item dropdown">
+                                    @if (permissions.IsConfiguration)
+                                    {
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="masterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-gear-fill me-2"></i>
+                                            Configuration
+                                        </a>
+                                    }
+                                    <ul class="dropdown-menu" aria-labelledby="masterDropdown">
+                                        @if (permissions.IsEmployee)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Employee" asp-action="Index">Employee</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" id="hrDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-person-workspace me-2"></i>
-                                        HR
-                                    </a>
+                                    @if (permissions.IsHR)
+                                    {
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="hrDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-person-workspace me-2"></i>
+                                            HR
+                                        </a>
+                                    }
                                     <ul class="dropdown-menu" aria-labelledby="hrDropdown">
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Attendance" asp-action="Index">Attendance</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Leave" asp-action="Index">Leave</a>
-                                        </li>
-                                   </ul>
+                                        @if (permissions.IsAttendance)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Attendance" asp-action="Index">Attendance</a>
+                                            </li>
+                                        }
+                                        @if (permissions.IsLeave)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Leave" asp-action="Index">Leave</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
+                                @if (permissions.IsPayroll)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Payroll" asp-action="Index">
+                                            <i class="bi bi-receipt me-2"></i>
+                                            Payroll
+                                        </a>
+                                    </li>
+                                }
 
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Payroll" asp-action="Index">
-                                        <i class="bi bi-receipt me-2"></i>
-                                        Payroll
-                                    </a>
-                                </li>
-                           
-                            }
-                            @if(userRole == "user")
-                            {
+                        }
+                        @if(permissions.RoleName == "user")
+                        {
                                <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">
                                         <i class="bi bi-building me-2"></i>
                                         Dashboard
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Employee" asp-action="Index">
-                                        <i class="bi bi-people me-2"></i>
-                                        Employee
-                                    </a>
+                                <li class="nav-item dropdown">
+                                    @if (permissions.IsConfiguration)
+                                    {
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="masterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-gear-fill me-2"></i>
+                                            Configuration
+                                        </a>
+                                    }
+                                    <ul class="dropdown-menu" aria-labelledby="masterDropdown">
+                                        @if (permissions.IsEmployee)
+                                        {
+                                            <li>
+                                                <a class="dropdown-item" asp-controller="Employee" asp-action="Index">Employee</a>
+                                            </li>
+                                        }
+                                    </ul>
                                 </li>
-                            }
-                        </ul>
-                        </div>
+                         }
+                         </ul>
+                    </div>
                     </nav>
 
                     <!-- Main Content -->

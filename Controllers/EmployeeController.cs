@@ -33,16 +33,15 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult>Create(Employee employee)
         {
-            ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
-            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
+          
             if (ModelState.IsValid)
             {
-                employee.Department = await _context.Departments.FindAsync(employee.DepartmentId);
-                employee.Organization = await _context.Organizations.FindAsync(employee.OrganizationId);
                 _context.Employees.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
             return View(employee);
         }
 
@@ -63,16 +62,15 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult>Edit(Employee employee)
         {
-            ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
-            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
+            
             if (ModelState.IsValid)
             {
-                employee.Department = await _context.Departments.FindAsync(employee.DepartmentId);
-                employee.Organization = await _context.Organizations.FindAsync(employee.OrganizationId);
                 _context.Employees.Update(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Departments = new SelectList(_context.Departments, "Id", "DepartmentName", employee.DepartmentId);
+            ViewBag.Organizations = new SelectList(_context.Organizations, "Id", "OrganizationName", employee.OrganizationId);
             return View(employee);
         }
 

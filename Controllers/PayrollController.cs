@@ -32,15 +32,14 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult>Create(Payroll payroll)
         {
-            ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", payroll.EmployeeId);
+           
             if (ModelState.IsValid)
             {
-                payroll.Employee = await _context.Employees.FindAsync(payroll.EmployeeId);
                 await _context.Payrolls.AddAsync(payroll);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-           
+            ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", payroll.EmployeeId);
             return View(payroll);
         }
 
@@ -60,14 +59,13 @@ namespace EmployeeDepartmentCRUDApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult>Edit(Payroll payroll)
         {
-            ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", payroll.EmployeeId);
             if (ModelState.IsValid)
             {
-                payroll.Employee = await _context.Employees.FindAsync(payroll.EmployeeId);
                 _context.Payrolls.Update(payroll);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Employees = new SelectList(_context.Employees, "Id", "EmployeeName", payroll.EmployeeId);
             return View(payroll);
         }
 
